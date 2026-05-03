@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Essy Baker — Artisan Cakes</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FBF6EF;
+    --warm-white: #FEFCF9;
+    --blush: #F2C4B0;
+    --dusty-rose: #D98B78;
+    --deep-rose: #9C4A38;
+    --chocolate: #3A1E10;
+    --caramel: #C17A40;
+    --sage: #8FA882;
+    --muted: #9A8880;
+    --gold: #C4922A;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--cream);
+    color: var(--chocolate);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5%;
+    background: rgba(251,246,239,0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(193,122,64,0.15);
+  }
+
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 1.6rem;
+    font-style: italic;
+    color: var(--chocolate);
+    letter-spacing: 0.01em;
+  }
+
+  .nav-logo span { color: var(--dusty-rose); }
+
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-family: var(--font-body);
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--chocolate); }
+
+  .nav-cta {
+    background: var(--chocolate);
+    color: var(--cream) !important;
+    padding: 0.55rem 1.4rem;
+    border-radius: 100px;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--deep-rose) !important; color: var(--cream) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding-top: 5rem;
+  }
+
+  .hero-text {
+    padding: 5% 5% 5% 8%;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--caramel);
+    border: 1px solid var(--caramel);
+    padding: 0.35rem 1rem;
+    border-radius: 100px;
+    margin-bottom: 1.8rem;
+  }
+
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 4.8rem);
+    line-height: 1.05;
+    color: var(--chocolate);
+    margin-bottom: 1.5rem;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--dusty-rose);
+  }
+
+  .hero-desc {
+    font-size: 1.05rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 420px;
+    margin-bottom: 2.5rem;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+
+  .btn-primary {
+    background: var(--chocolate);
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.85rem 2.2rem;
+    border-radius: 100px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--deep-rose); transform: translateY(-1px); }
+
+  .btn-secondary {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--chocolate);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: gap 0.2s;
+  }
+  .btn-secondary:hover { gap: 0.8rem; }
+  .btn-secondary::after { content: '→'; }
+
+  .hero-visual {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #F2C4B0 0%, #E8A88A 50%, #C17A40 100%);
+    overflow: hidden;
+  }
+
+  .hero-cake-svg {
+    width: 340px;
+    height: 380px;
+    filter: drop-shadow(0 30px 60px rgba(58,30,16,0.25));
+    animation: floatCake 4s ease-in-out infinite;
+  }
+
+  @keyframes floatCake {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+  }
+
+  .hero-decor-1 {
+    position: absolute; top: 15%; right: 10%;
+    width: 60px; height: 60px;
+    border: 2px solid rgba(255,255,255,0.4);
+    border-radius: 50%;
+    animation: spin 20s linear infinite;
+  }
+  .hero-decor-2 {
+    position: absolute; bottom: 20%; left: 8%;
+    width: 40px; height: 40px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── STATS BAR ── */
+  .stats {
+    background: var(--chocolate);
+    padding: 2rem 8%;
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-item { text-align: center; }
+  .stat-number {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--blush);
+    display: block;
+  }
+  .stat-label {
+    font-size: 0.82rem;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(251,246,239,0.55);
+    margin-top: 0.2rem;
+    display: block;
+  }
+
+  /* ── SECTION COMMON ── */
+  section { padding: 6rem 8%; }
+
+  .section-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--caramel);
+    margin-bottom: 0.8rem;
+    display: block;
+  }
+
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    line-height: 1.15;
+    color: var(--chocolate);
+    margin-bottom: 1.2rem;
+  }
+
+  .section-title em { font-style: italic; color: var(--dusty-rose); }
+
+  .section-subtitle {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--muted);
+    max-width: 520px;
+  }
+
+  /* ── ABOUT ── */
+  .about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+    background: var(--warm-white);
+  }
+
+  .about-visual {
+    position: relative;
+  }
+
+  .about-card {
+    background: var(--cream);
+    border-radius: 24px;
+    padding: 3rem;
+    border: 1px solid rgba(193,122,64,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .about-card::before {
+    content: '"';
+    font-family: var(--font-display);
+    font-size: 12rem;
+    line-height: 1;
+    color: var(--blush);
+    position: absolute;
+    top: -2rem;
+    left: 1.5rem;
+    opacity: 0.4;
+  }
+
+  .about-quote {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-style: italic;
+    line-height: 1.55;
+    color: var(--chocolate);
+    position: relative;
+    z-index: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .about-sig {
+    font-size: 0.88rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    color: var(--caramel);
+    text-transform: uppercase;
+  }
+
+  .about-float {
+    position: absolute;
+    right: -1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--chocolate);
+    color: var(--cream);
+    border-radius: 16px;
+    padding: 1.2rem 1.5rem;
+    text-align: center;
+    min-width: 120px;
+  }
+
+  .about-float-num {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--blush);
+    display: block;
+  }
+
+  .about-float-text {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: rgba(251,246,239,0.6);
+  }
+
+  .about-text { padding-left: 1rem; }
+
+  .about-text p {
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.85;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+
+  .about-features {
+    list-style: none;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .about-features li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--chocolate);
+  }
+
+  .feature-dot {
+    width: 8px; height: 8px;
+    background: var(--dusty-rose);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ── MENU ── */
+  .menu { background: var(--cream); }
+
+  .menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .menu-card {
+    background: var(--warm-white);
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(193,122,64,0.12);
+    transition: transform 0.25s, box-shadow 0.25s;
+  }
+
+  .menu-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(58,30,16,0.1);
+  }
+
+  .menu-card-img {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .menu-card-img.bg1 { background: linear-gradient(135deg, #F9E4D4, #F2C4B0); }
+  .menu-card-img.bg2 { background: linear-gradient(135deg, #E8D5C4, #C9A882); }
+  .menu-card-img.bg3 { background: linear-gradient(135deg, #D4E4D0, #8FA882); }
+  .menu-card-img.bg4 { background: linear-gradient(135deg, #F9DDD4, #D98B78); }
+  .menu-card-img.bg5 { background: linear-gradient(135deg, #E8D4F0, #B088C0); }
+  .menu-card-img.bg6 { background: linear-gradient(135deg, #FFF0C8, #C4922A); }
+
+  .menu-card-body { padding: 1.4rem 1.5rem 1.8rem; }
+
+  .menu-card-tag {
+    font-size: 0.72rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--caramel);
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  .menu-card-name {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--chocolate);
+    margin-bottom: 0.5rem;
+  }
+
+  .menu-card-desc {
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.65;
+    color: var(--muted);
+    margin-bottom: 1.2rem;
+  }
+
+  .menu-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .menu-card-price {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--chocolate);
+  }
+
+  .menu-card-btn {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    color: var(--dusty-rose);
+    border: 1px solid var(--dusty-rose);
+    border-radius: 100px;
+    padding: 0.4rem 1rem;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .menu-card-btn:hover { background: var(--dusty-rose); color: white; }
+
+  /* ── PROCESS ── */
+  .process { background: var(--warm-white); }
+
+  .process-header { text-align: center; margin-bottom: 4rem; }
+  .process-header .section-subtitle { margin: 0 auto; }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    position: relative;
+  }
+
+  .step {
+    text-align: center;
+    padding: 2rem 1.5rem;
+    position: relative;
+  }
+
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 4rem;
+    font-weight: 700;
+    color: rgba(193,122,64,0.15);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-icon {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .step-title {
+    font-family: var(--font-display);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--chocolate);
+    margin-bottom: 0.6rem;
+  }
+
+  .step-desc {
+    font-size: 0.88rem;
+    font-weight: 300;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+
+  /* ── TESTIMONIALS ── */
+  .testimonials { background: var(--chocolate); }
+
+  .testimonials .section-label { color: var(--blush); opacity: 0.7; }
+  .testimonials .section-title { color: var(--cream); }
+
+  .t-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .t-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 2rem;
+  }
+
+  .t-stars { color: var(--gold); font-size: 1rem; margin-bottom: 1rem; letter-spacing: 0.1em; }
+
+  .t-text {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-style: italic;
+    line-height: 1.65;
+    color: rgba(251,246,239,0.85);
+    margin-bottom: 1.5rem;
+  }
+
+  .t-author { display: flex; align-items: center; gap: 0.8rem; }
+
+  .t-avatar {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--dusty-rose);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: white;
+  }
+
+  .t-name {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--cream);
+  }
+
+  .t-role {
+    font-size: 0.78rem;
+    color: rgba(251,246,239,0.45);
+  }
+
+  /* ── CONTACT ── */
+  .contact {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  .contact-info { padding-top: 0.5rem; }
+
+  .contact-item {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .contact-icon {
+    width: 44px; height: 44px;
+    background: var(--warm-white);
+    border: 1px solid rgba(193,122,64,0.2);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  .contact-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--caramel);
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  .contact-value {
+    font-size: 0.95rem;
+    color: var(--chocolate);
+    font-weight: 400;
+  }
+
+  .contact-form {
+    background: var(--warm-white);
+    border-radius: 24px;
+    padding: 2.5rem;
+    border: 1px solid rgba(193,122,64,0.12);
+  }
+
+  .form-title {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--chocolate);
+    margin-bottom: 1.8rem;
+  }
+
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem; }
+
+  .form-group { margin-bottom: 1rem; }
+
+  .form-group label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 0.45rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    background: var(--cream);
+    border: 1px solid rgba(193,122,64,0.2);
+    border-radius: 10px;
+    padding: 0.75rem 1rem;
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    color: var(--chocolate);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--dusty-rose);
+  }
+
+  .form-group textarea { resize: vertical; min-height: 110px; }
+
+  .form-submit {
+    width: 100%;
+    background: var(--chocolate);
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-size: 0.92rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    padding: 0.95rem;
+    border: none;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.5rem;
+  }
+  .form-submit:hover { background: var(--deep-rose); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--chocolate);
+    color: rgba(251,246,239,0.5);
+    text-align: center;
+    padding: 2.5rem 8%;
+    font-size: 0.85rem;
+  }
+
+  footer .footer-logo {
+    font-family: var(--font-display);
+    font-size: 1.8rem;
+    font-style: italic;
+    color: var(--cream);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  footer a { color: var(--blush); text-decoration: none; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; }
+    .hero-visual { height: 55vw; min-height: 260px; }
+    .hero-text { padding: 2rem 6% 3rem; }
+    .about, .contact { grid-template-columns: 1fr; gap: 3rem; }
+    .about-float { display: none; }
+    .form-row { grid-template-columns: 1fr; }
+    nav { padding: 1rem 4%; }
+    .nav-links { display: none; }
+    section { padding: 4rem 6%; }
+    .stats { flex-direction: row; justify-content: space-around; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Essy <span>Baker</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#menu">Our Cakes</a></li>
+    <li><a href="#process">How It Works</a></li>
+    <li><a href="#contact" class="nav-cta">Order Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <span class="hero-badge">✦ Handcrafted with Love</span>
+    <h1>Baked to make every <em>moment</em> sweeter</h1>
+    <p class="hero-desc">Essy Baker creates custom artisan cakes for weddings, birthdays, corporate events, and every celebration in between — each one a delicious work of art.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Order a Cake</a>
+      <a href="#menu" class="btn-secondary">View Our Menu</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-decor-1"></div>
+    <div class="hero-decor-2"></div>
+    <svg class="hero-cake-svg" viewBox="0 0 280 320" xmlns="http://www.w3.org/2000/svg">
+      <!-- Top tier -->
+      <ellipse cx="140" cy="80" rx="70" ry="22" fill="#FBF6EF"/>
+      <rect x="70" y="80" width="140" height="55" rx="4" fill="#FBF6EF"/>
+      <ellipse cx="140" cy="135" rx="70" ry="22" fill="#F2E8DC"/>
+      <!-- Top tier decoration -->
+      <ellipse cx="140" cy="80" rx="70" ry="22" fill="#F9E4D4"/>
+      <ellipse cx="140" cy="80" rx="60" ry="18" fill="#FBF6EF" opacity="0.6"/>
+      <!-- Roses top -->
+      <circle cx="120" cy="78" r="7" fill="#D98B78"/>
+      <circle cx="135" cy="73" r="6" fill="#E8A88A"/>
+      <circle cx="150" cy="76" r="7" fill="#D98B78"/>
+      <circle cx="163" cy="72" r="5" fill="#E8A88A"/>
+      <!-- Candles -->
+      <rect x="108" y="55" width="6" height="22" rx="3" fill="#F9E4D4"/>
+      <rect x="128" y="50" width="6" height="27" rx="3" fill="#C4E0C8"/>
+      <rect x="148" y="53" width="6" height="24" rx="3" fill="#F9E4D4"/>
+      <rect x="168" y="50" width="6" height="27" rx="3" fill="#F2C4B0"/>
+      <!-- Flames -->
+      <ellipse cx="111" cy="53" rx="3" ry="5" fill="#F4A234" opacity="0.9"/>
+      <ellipse cx="131" cy="48" rx="3" ry="5" fill="#F4A234" opacity="0.9"/>
+      <ellipse cx="151" cy="51" rx="3" ry="5" fill="#F4A234" opacity="0.9"/>
+      <ellipse cx="171" cy="48" rx="3" ry="5" fill="#F4A234" opacity="0.9"/>
+      <!-- Middle tier -->
+      <ellipse cx="140" cy="135" rx="90" ry="27" fill="#F9E4D4"/>
+      <rect x="50" y="135" width="180" height="65" rx="4" fill="#F9E4D4"/>
+      <ellipse cx="140" cy="200" rx="90" ry="27" fill="#F2D0BC"/>
+      <!-- Stripe decoration middle -->
+      <rect x="50" y="150" width="180" height="8" fill="#F2C4B0" opacity="0.5"/>
+      <rect x="50" y="175" width="180" height="8" fill="#F2C4B0" opacity="0.5"/>
+      <!-- Roses middle -->
+      <circle cx="85" cy="167" r="9" fill="#D98B78"/>
+      <circle cx="110" cy="160" r="8" fill="#C4705C"/>
+      <circle cx="140" cy="165" r="10" fill="#D98B78"/>
+      <circle cx="170" cy="160" r="8" fill="#C4705C"/>
+      <circle cx="195" cy="167" r="9" fill="#D98B78"/>
+      <!-- Base tier -->
+      <ellipse cx="140" cy="200" rx="110" ry="32" fill="#E8A88A"/>
+      <rect x="30" y="200" width="220" height="80" rx="4" fill="#E8A88A"/>
+      <ellipse cx="140" cy="280" rx="110" ry="32" fill="#D98B78"/>
+      <!-- Base ribbon -->
+      <rect x="30" y="255" width="220" height="16" fill="#C4705C" opacity="0.5"/>
+      <!-- Base roses -->
+      <circle cx="65" cy="238" r="11" fill="#C4705C"/>
+      <circle cx="100" cy="230" r="10" fill="#B86050"/>
+      <circle cx="140" cy="236" r="12" fill="#C4705C"/>
+      <circle cx="180" cy="230" r="10" fill="#B86050"/>
+      <circle cx="215" cy="238" r="11" fill="#C4705C"/>
+      <!-- Plate -->
+      <ellipse cx="140" cy="292" rx="125" ry="20" fill="#3A1E10" opacity="0.15"/>
+      <ellipse cx="140" cy="285" rx="130" ry="16" fill="#F2E8DC"/>
+      <ellipse cx="140" cy="285" rx="120" ry="12" fill="#FBF6EF"/>
+    </svg>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item">
+    <span class="stat-number">500+</span>
+    <span class="stat-label">Cakes Delivered</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">8+</span>
+    <span class="stat-label">Years of Baking</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">100%</span>
+    <span class="stat-label">Custom Orders</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">5★</span>
+    <span class="stat-label">Client Rating</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-visual">
+    <div class="about-card">
+      <p class="about-quote">"Every cake I bake carries a piece of my heart — crafted with patience, passion, and the finest ingredients."</p>
+      <span class="about-sig">— Essy, Founder &amp; Head Baker</span>
+    </div>
+    <div class="about-float">
+      <span class="about-float-num">12K+</span>
+      <span class="about-float-text">Happy Clients</span>
+    </div>
+  </div>
+  <div class="about-text">
+    <span class="section-label">Our Story</span>
+    <h2 class="section-title">Baking joy since <em>day one</em></h2>
+    <p>Essy Baker was born from a simple belief: that a truly great cake can transform any gathering into a memory. We combine time-honoured baking techniques with contemporary design to produce cakes that taste as beautiful as they look.</p>
+    <p>From intimate birthday celebrations to grand wedding receptions, every order is treated with the same meticulous care. We source premium ingredients, bake fresh to order, and deliver with a smile.</p>
+    <ul class="about-features">
+      <li><span class="feature-dot"></span>100% fresh, premium ingredients — no preservatives</li>
+      <li><span class="feature-dot"></span>Fully bespoke designs tailored to your vision</li>
+      <li><span class="feature-dot"></span>Flexible dietary options: gluten-free, dairy-free &amp; vegan</li>
+      <li><span class="feature-dot"></span>Same-day delivery available within our service area</li>
+    </ul>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu" id="menu">
+  <div class="menu-header">
+    <div>
+      <span class="section-label">What We Bake</span>
+      <h2 class="section-title">Our signature <em>creations</em></h2>
+    </div>
+    <a href="#contact" class="btn-secondary">Request custom order</a>
+  </div>
+  <div class="menu-grid">
+
+    <div class="menu-card">
+      <div class="menu-card-img bg1">🎂</div>
+      <div class="menu-card-body">
+        <span class="menu-card-tag">Celebration</span>
+        <div class="menu-card-name">Classic Birthday Cake</div>
+        <p class="menu-card-desc">Moist layered sponge with your choice of filling — vanilla, chocolate, red velvet, lemon or strawberry.</p>
+        <div class="menu-card-footer">
+          <span class="menu-card-price">From KSh 2,500</span>
+          <a href="#contact" class="menu-card-btn">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-card-img bg2">💍</div>
+      <div class="menu-card-body">
+        <span class="menu-card-tag">Wedding</span>
+        <div class="menu-card-name">Tiered Wedding Cake</div>
+        <p class="menu-card-desc">Elegant multi-tier showpiece with handcrafted floral sugar decorations. Fully customisable tiers and flavours.</p>
+        <div class="menu-card-footer">
+          <span class="menu-card-price">From KSh 15,000</span>
+          <a href="#contact" class="menu-card-btn">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-card-img bg3">🎓</div>
+      <div class="menu-card-body">
+        <span class="menu-card-tag">Graduation</span>
+        <div class="menu-card-name">Graduation Cake</div>
+        <p class="menu-card-desc">Mark the milestone in style — custom colours, school motifs, and personalised messages on every cake.</p>
+        <div class="menu-card-footer">
+          <span class="menu-card-price">From KSh 3,500</span>
+          <a href="#contact" class="menu-card-btn">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-card-img bg4">👶</div>
+      <div class="menu-card-body">
+        <span class="menu-card-tag">Baby Shower</span>
+        <div class="menu-card-name">Baby Shower Cake</div>
+        <p class="menu-card-desc">Adorable themed cakes with gender-reveal options, soft pastel palettes, and whimsical fondant toppers.</p>
+        <div class="menu-card-footer">
+          <span class="menu-card-price">From KSh 3,800</span>
+          <a href="#contact" class="menu-card-btn">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-card-img bg5">🏢</div>
+      <div class="menu-card-body">
+        <span class="menu-card-tag">Corporate</span>
+        <div class="menu-card-name">Corporate Event Cake</div>
+        <p class="menu-card-desc">Logo-branded, branded-colour cakes for product launches, team celebrations, and company milestones.</p>
+        <div class="menu-card-footer">
+          <span class="menu-card-price">From KSh 5,000</span>
+          <a href="#contact" class="menu-card-btn">Order</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="menu-card">
+      <div class="menu-card-img bg6">✨</div>
+      <div class="menu-card-body">
+        <span class="menu-card-tag">Custom</span>
+        <div class="menu-card-name">Fully Bespoke Cake</div>
+        <p class="menu-card-desc">You dream it, we bake it. From sculpted 3D designs to luxury gold-leaf finishes — anything is possible.</p>
+        <div class="menu-card-footer">
+          <span class="menu-card-price">Get a quote</span>
+          <a href="#contact" class="menu-card-btn">Order</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div class="process-header">
+    <span class="section-label">How It Works</span>
+    <h2 class="section-title">Your cake in <em>4 simple steps</em></h2>
+    <p class="section-subtitle">We make ordering your dream cake effortless. Here's what happens from your first message to the moment we deliver.</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">01</div>
+      <span class="step-icon">💬</span>
+      <div class="step-title">Tell Us Your Vision</div>
+      <p class="step-desc">Fill in our quick order form or send us a message with your event details, flavour preferences, and any design ideas.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <span class="step-icon">🎨</span>
+      <div class="step-title">Design Consultation</div>
+      <p class="step-desc">Our baker works with you to finalise the design, size, and flavours — and sends over a quote within 24 hours.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <span class="step-icon">🧁</span>
+      <div class="step-title">We Bake with Love</div>
+      <p class="step-desc">Your cake is baked fresh to order using the finest ingredients, decorated by hand with meticulous attention to detail.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <span class="step-icon">🎁</span>
+      <div class="step-title">Delivered to You</div>
+      <p class="step-desc">We deliver safely to your door, or you can collect from us. Every cake arrives perfectly presented and on time.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <span class="section-label">What Clients Say</span>
+  <h2 class="section-title">Made with love, <em>remembered forever</em></h2>
+  <div class="t-grid">
+
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"Essy Baker made our wedding cake an absolute masterpiece. Every guest asked where we got it. Worth every penny!"</p>
+      <div class="t-author">
+        <div class="t-avatar">AM</div>
+        <div>
+          <div class="t-name">Amira &amp; Michael</div>
+          <div class="t-role">Wedding, Nairobi 2024</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"I've ordered birthday cakes three years running. The quality and creativity never disappoints — my kids go crazy for them!"</p>
+      <div class="t-author">
+        <div class="t-avatar">JK</div>
+        <div>
+          <div class="t-name">Janet Kamau</div>
+          <div class="t-role">Repeat Customer</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t-card">
+      <div class="t-stars">★★★★★</div>
+      <p class="t-text">"Our company anniversary cake with the logo was stunning. The team was impressed and it tasted incredible. Highly recommended!"</p>
+      <div class="t-author">
+        <div class="t-avatar">DM</div>
+        <div>
+          <div class="t-name">David Mutua</div>
+          <div class="t-role">Corporate Client, TechCo Kenya</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-info">
+    <span class="section-label">Get in Touch</span>
+    <h2 class="section-title">Let's bake your <em>perfect cake</em></h2>
+    <p class="section-subtitle" style="margin-bottom: 2.5rem;">Ready to order? Fill in the form and we'll be in touch within 24 hours to discuss your cake.</p>
+
+    <div class="contact-item">
+      <div class="contact-icon">📍</div>
+      <div>
+        <span class="contact-label">Location</span>
+        <span class="contact-value">Nairobi, Kenya — delivery available citywide</span>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <div class="contact-icon">📞</div>
+      <div>
+        <span class="contact-label">Phone / WhatsApp</span>
+        <span class="contact-value">+254 700 000 000</span>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <div class="contact-icon">✉️</div>
+      <div>
+        <span class="contact-label">Email</span>
+        <span class="contact-value">hello@essybaker.co.ke</span>
+      </div>
+    </div>
+
+    <div class="contact-item">
+      <div class="contact-icon">🕐</div>
+      <div>
+        <span class="contact-label">Hours</span>
+        <span class="contact-value">Mon – Sat: 8 AM – 7 PM</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="contact-form">
+    <div class="form-title">Place Your Order</div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>First Name</label>
+        <input type="text" placeholder="Jane">
+      </div>
+      <div class="form-group">
+        <label>Last Name</label>
+        <input type="text" placeholder="Mwangi">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" placeholder="jane@example.com">
+    </div>
+    <div class="form-group">
+      <label>Phone / WhatsApp</label>
+      <input type="tel" placeholder="+254 7XX XXX XXX">
+    </div>
+    <div class="form-group">
+      <label>Cake Type</label>
+      <select>
+        <option value="">Select a cake...</option>
+        <option>Birthday Cake</option>
+        <option>Wedding Cake</option>
+        <option>Graduation Cake</option>
+        <option>Baby Shower Cake</option>
+        <option>Corporate / Event Cake</option>
+        <option>Fully Bespoke / Custom</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Event Date</label>
+      <input type="date">
+    </div>
+    <div class="form-group">
+      <label>Tell Us About Your Cake</label>
+      <textarea placeholder="Describe your ideal cake — flavour, size, colours, theme, number of guests..."></textarea>
+    </div>
+    <button class="form-submit">Send My Order Request →</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo">Essy Baker</span>
+  <p style="margin-bottom: 0.5rem;">Handcrafted artisan cakes for every occasion &bull; Nairobi, Kenya</p>
+  <p>&copy; 2025 Essy Baker. All rights reserved. &bull; <a href="mailto:hello@essybaker.co.ke">hello@essybaker.co.ke</a></p>
+</footer>
+
+<script>
+  document.querySelector('.form-submit').addEventListener('click', function() {
+    const name = document.querySelector('input[placeholder="Jane"]').value;
+    if (name) {
+      this.textContent = '✓ Request Sent — We\'ll be in touch soon!';
+      this.style.background = '#8FA882';
+      this.disabled = true;
+    } else {
+      alert('Please fill in at least your name to send your order request.');
+    }
+  });
+
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+</script>
+</body>
+</html>
